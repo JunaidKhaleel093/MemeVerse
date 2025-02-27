@@ -47,7 +47,7 @@ const HomePage = () => {
             <Flame size={64} className="mx-auto mb-4" />
           </motion.div>
           <motion.h1 
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-4xl md:text-5xl font-bold mb-4 font-[Bangers]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
@@ -55,7 +55,7 @@ const HomePage = () => {
             Welcome to MemeVerse - Where Anime & Memes Collide!
           </motion.h1>
           <motion.p 
-            className="text-lg md:text-xl opacity-90 mb-6"
+            className="text-lg md:text-xl opacity-90 mb-6 font-[PressStart2P]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.5 }}
