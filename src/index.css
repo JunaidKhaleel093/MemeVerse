@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Gradient Background */
+body {
+  @apply bg-gradient-to-r from-purple-700 to-indigo-500;
+}
