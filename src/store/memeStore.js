@@ -7,7 +7,7 @@ const mockMemes = [
   imageUrl: 'https://images8.alphacoders.com/136/thumb-440-1361048.webp',
   creator: 'Junaid Khaleel',
   createdAt: '2023-05-15T10:30:00Z',
-  likes: 3072,
+  likes: 3,
   comments: [
     { id: 'c1', user: 'ViceCaptainNerf', text: 'Bro really said "Kaiju mode, but responsibly."', createdAt: '2023-05-15T11:30:00Z' },
     { id: 'c2', user: 'MonsterHunter', text: 'Imagine being OP but still stuck doing reports.', createdAt: '2023-05-15T12:45:00Z' }
@@ -21,7 +21,7 @@ const mockMemes = [
   imageUrl: 'https://images6.alphacoders.com/135/thumbbig-1358564.webp',
   creator: 'Junaid Khaleel',
   createdAt: '2023-06-20T14:00:00Z',
-  likes: 5000,
+  likes: 5,
   comments: [
     { id: 'c3', user: 'ZoroTheLost', text: 'And I still believe him!', createdAt: '2023-06-20T14:30:00Z' },
     { id: 'c4', user: 'SanjiSimp', text: 'Bro has that main character energy!', createdAt: '2023-06-20T15:00:00Z' }
@@ -35,7 +35,7 @@ const mockMemes = [
   imageUrl: 'https://images7.alphacoders.com/134/thumb-440-1349255.webp',
   creator: 'Junaid Khaleel',
   createdAt: '2023-07-10T09:15:00Z',
-  likes: 3000,
+  likes: 3,
   comments: [
     { id: 'c5', user: 'VegetaPride', text: 'This guy never rests...', createdAt: '2023-07-10T09:45:00Z' },
     { id: 'c6', user: 'KrillinF', text: 'I’m out, not again!', createdAt: '2023-07-10T10:00:00Z' }
@@ -49,7 +49,7 @@ const mockMemes = [
   imageUrl: 'https://images5.alphacoders.com/113/thumb-440-1134110.webp',
   creator: 'Junaid Khaleel',
   createdAt: '2023-05-15T10:30:00Z',
-  likes: 8000,
+  likes: 8,
   comments: [
     { id: 'c7', user: 'SukunaLaughs', text: 'Somebody is about to die.', createdAt: '2023-05-15T11:30:00Z' },
     { id: 'c8', user: 'ItadoriKicks', text: 'Dude is way too OP!', createdAt: '2023-05-15T12:45:00Z' }
@@ -63,7 +63,7 @@ const mockMemes = [
   imageUrl: 'https://images.alphacoders.com/109/thumb-440-1093511.webp',
   creator: 'Junaid Khaleel',
   createdAt: '2023-08-05T12:00:00Z',
-  likes: 9000,
+  likes: 9,
   comments: [
     { id: 'c9', user: 'HunterGuild', text: 'Another army joins the squad!', createdAt: '2023-08-05T12:30:00Z' },
     { id: 'c10', user: 'SystemMessage', text: 'Your level has increased!', createdAt: '2023-08-05T13:00:00Z' }
@@ -77,7 +77,7 @@ const mockMemes = [
   imageUrl: 'https://images.alphacoders.com/138/thumb-440-1382324.webp',
   creator: 'Junaid Khaleel',
   createdAt: '2023-09-12T16:45:00Z',
-  likes: 4000,
+  likes: 4,
   comments: [
     { id: 'c11', user: 'AlienFan', text: 'Dude just turned into a beast!', createdAt: '2023-09-12T17:00:00Z' },
     { id: 'c12', user: 'GhostHunter', text: 'Turbo mode activated!', createdAt: '2023-09-12T17:30:00Z' }
@@ -91,7 +91,7 @@ const mockMemes = [
   imageUrl: 'https://images8.alphacoders.com/136/thumb-440-1361048.webp',
   creator: 'Junaid Khaleel',
   createdAt: '2023-05-15T10:30:00Z',
-  likes: 3072,
+  likes: 3,
   comments: [
     { id: 'c1', user: 'ViceCaptainNerf', text: 'Bro really said "Kaiju mode, but responsibly."', createdAt: '2023-05-15T11:30:00Z' },
     { id: 'c2', user: 'MonsterHunter', text: 'Imagine being OP but still stuck doing reports.', createdAt: '2023-05-15T12:45:00Z' }
@@ -105,7 +105,7 @@ const mockMemes = [
   imageUrl: 'https://images6.alphacoders.com/135/thumbbig-1358564.webp',
   creator: 'Junaid Khaleel',
   createdAt: '2023-06-20T14:00:00Z',
-  likes: 5000,
+  likes: 5,
   comments: [
     { id: 'c3', user: 'ZoroTheLost', text: 'And I still believe him!', createdAt: '2023-06-20T14:30:00Z' },
     { id: 'c4', user: 'SanjiSimp', text: 'Bro has that main character energy!', createdAt: '2023-06-20T15:00:00Z' }
@@ -119,7 +119,7 @@ const mockMemes = [
   imageUrl: 'https://images7.alphacoders.com/134/thumb-440-1349255.webp',
   creator: 'Junaid Khaleel',
   createdAt: '2023-07-10T09:15:00Z',
-  likes: 3000,
+  likes: 3,
   comments: [
     { id: 'c5', user: 'VegetaPride', text: 'This guy never rests...', createdAt: '2023-07-10T09:45:00Z' },
     { id: 'c6', user: 'KrillinF', text: 'I’m out, not again!', createdAt: '2023-07-10T10:00:00Z' }
@@ -133,7 +133,7 @@ const mockMemes = [
   imageUrl: 'https://images8.alphacoders.com/137/thumb-440-1371304.webp',
   creator: 'Junaid Khaleel',
   createdAt: '2023-10-01T11:00:00Z',
-  likes: 8500,
+  likes: 8,
   comments: [
     { id: 'c13', user: 'LoidSimp', text: 'Anya forger, the genius strategist.', createdAt: '2023-10-01T11:30:00Z' },
     { id: 'c14', user: 'YorFan', text: 'I bet Loid doesn’t even know.', createdAt: '2023-10-01T12:00:00Z' }
@@ -147,7 +147,7 @@ const mockMemes = [
   imageUrl: 'https://images2.alphacoders.com/133/thumb-440-1335818.webp',
   creator: 'Junaid Khaleel',
   createdAt: '2023-11-05T15:00:00Z',
-  likes: 9200,
+  likes: 9,
   comments: [
     { id: 'c15', user: 'PowerRules', text: 'Mission accomplished, but at what cost?', createdAt: '2023-11-05T15:30:00Z' },
     { id: 'c16', user: 'MakimaWorshipper', text: 'Denji’s ultimate dream!', createdAt: '2023-11-05T16:00:00Z' }
@@ -161,7 +161,7 @@ const mockMemes = [
   imageUrl: 'https://picfiles.alphacoders.com/543/thumb-1920-543548.png',
   creator: 'Junaid Khaleel',
   createdAt: '2023-12-15T18:00:00Z',
-  likes: 8700,
+  likes: 8,
   comments: [
     { id: 'c17', user: 'ClassDLeader', text: 'Dude is too calculated.', createdAt: '2023-12-15T18:30:00Z' },
     { id: 'c18', user: 'StrategyKing', text: 'Never underestimate the quiet ones.', createdAt: '2023-12-15T19:00:00Z' }
@@ -179,7 +179,7 @@ const trendingMemes = [
     imageUrl: 'https://images3.alphacoders.com/135/thumb-440-1358483.webp',
     creator: 'Junaid Khaleel',
     createdAt: '2023-06-01T14:00:00Z',
-    likes: 9200,
+    likes: 9,
     comments: [
       { id: 'ct1', user: 'SuzakuKnight', text: 'Geass power is too broken!', createdAt: '2023-06-01T14:30:00Z' }
     ],
@@ -192,7 +192,7 @@ const trendingMemes = [
     imageUrl: 'https://images7.alphacoders.com/133/thumb-440-1339712.webp',
     creator: 'Junaid Khaleel',
     createdAt: '2023-07-12T12:45:00Z',
-    likes: 11000,
+    likes: 11,
     comments: [
       { id: 'ct2', user: 'SurveyCorps', text: 'Eren on another level.', createdAt: '2023-07-12T13:00:00Z' }
     ],
@@ -205,7 +205,7 @@ const trendingMemes = [
     imageUrl: 'https://images6.alphacoders.com/135/thumb-440-1358885.webp',
     creator: 'Junaid Khaleel',
     createdAt: '2023-08-22T10:15:00Z',
-    likes: 8500,
+    likes: 8,
     comments: [
       { id: 'ct3', user: 'GenosDisciple', text: 'This guy needs a real challenge!', createdAt: '2023-08-22T10:30:00Z' }
     ],
@@ -218,7 +218,7 @@ const trendingMemes = [
     imageUrl: 'https://images8.alphacoders.com/134/thumb-440-1348647.webp',
     creator: 'Junaid Khaleel',
     createdAt: '2023-09-10T09:30:00Z',
-    likes: 13000,
+    likes: 1,
     comments: [
       { id: 'ct4', user: 'VegetaPride', text: 'Kakarot surpassing limits again!', createdAt: '2023-09-10T09:45:00Z' }
     ],
@@ -231,7 +231,7 @@ const trendingMemes = [
     imageUrl: 'https://images3.alphacoders.com/153/thumb-440-153245.webp',
     creator: 'Junaid Khaleel',
     createdAt: '2023-10-05T18:20:00Z',
-    likes: 7200,
+    likes: 7,
     comments: [
       { id: 'ct5', user: 'ShinigamiEyes', text: 'L is the real genius here.', createdAt: '2023-10-05T18:40:00Z' }
     ],
@@ -244,7 +244,7 @@ const trendingMemes = [
     imageUrl: 'https://images3.alphacoders.com/644/thumb-440-644185.webp',
     creator: 'Junaid Khaleel',
     createdAt: '2023-11-15T15:00:00Z',
-    likes: 9500,
+    likes: 9,
     comments: [
       { id: 'ct6', user: 'SasukeRival', text: 'Classic Naruto move!', createdAt: '2023-11-15T15:20:00Z' }
     ],
@@ -257,7 +257,7 @@ const trendingMemes = [
     imageUrl: 'https://images8.alphacoders.com/133/thumb-440-1331191.webp',
     creator: 'Junaid Khaleel',
     createdAt: '2024-01-02T08:10:00Z',
-    likes: 8200,
+    likes: 8,
     comments: [
       { id: 'ct7', user: 'NezukoKick', text: 'Tanjiro always on point!', createdAt: '2024-01-02T08:30:00Z' }
     ],
@@ -270,7 +270,7 @@ const trendingMemes = [
     imageUrl: 'https://images8.alphacoders.com/133/thumb-440-1331367.webp',
     creator: 'Junaid Khaleel',
     createdAt: '2024-02-10T11:45:00Z',
-    likes: 14000,
+    likes: 1,
     comments: [
       { id: 'ct8', user: 'JujutsuKing', text: 'The strongest sorcerer is here!', createdAt: '2024-02-10T12:00:00Z' }
     ],
@@ -283,7 +283,7 @@ const trendingMemes = [
     imageUrl: 'https://images2.alphacoders.com/727/thumb-440-727991.webp',
     creator: 'Junaid Khaleel',
     createdAt: '2024-03-05T17:10:00Z',
-    likes: 8800,
+    likes: 8,
     comments: [
       { id: 'ct9', user: 'NotebookHolder', text: 'He always has a plan.', createdAt: '2024-03-05T17:30:00Z' }
     ],
@@ -296,7 +296,7 @@ const trendingMemes = [
     imageUrl: 'https://images5.alphacoders.com/132/thumb-440-1325614.webp',
     creator: 'Junaid Khaleel',
     createdAt: '2024-04-01T20:00:00Z',
-    likes: 10200,
+    likes: 12,
     comments: [
       { id: 'ct10', user: 'SanjiKicks', text: 'Zoro keeps his word.', createdAt: '2024-04-01T20:15:00Z' }
     ],
@@ -309,7 +309,7 @@ const trendingMemes = [
     imageUrl: 'https://images6.alphacoders.com/137/thumb-440-1371177.webp',
     creator: 'Junaid Khaleel',
     createdAt: '2024-05-12T16:40:00Z',
-    likes: 12500,
+    likes: 13,
     comments: [
       { id: 'ct11', user: 'KonohaGhost', text: 'Itachi is just built different.', createdAt: '2024-05-12T16:55:00Z' }
     ],
@@ -322,7 +322,7 @@ const trendingMemes = [
     imageUrl: 'https://images7.alphacoders.com/135/thumb-440-1359295.webp',
     creator: 'Junaid Khaleel',
     createdAt: '2024-06-20T14:20:00Z',
-    likes: 9800,
+    likes: 9,
     comments: [
       { id: 'ct12', user: 'SoulSociety', text: 'Aizen always 10 steps ahead.', createdAt: '2024-06-20T14:40:00Z' }
     ],

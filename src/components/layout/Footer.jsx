@@ -4,7 +4,7 @@ import { Flame, Github, Twitter, Instagram } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-[#6a0dad] via-[#8a2be2] to-[#9370db] text-gray-200 text-sm">
+    <footer className="bg-gradient-to-r from-[#2e003e] via-[#6a0dad] to-[#8a2be2] text-gray-200 text-sm">
       <div className="container mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between">
         {/* Logo & Socials */}
         <div className="flex items-center space-x-2">
