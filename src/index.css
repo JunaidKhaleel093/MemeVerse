@@ -4,5 +4,5 @@
 
 /* Custom Gradient Background */
 body {
-  @apply bg-gradient-to-r from-purple-700 to-indigo-500;
+  @apply bg-gradient-to-r from-purple-500 to-indigo-300;
 }

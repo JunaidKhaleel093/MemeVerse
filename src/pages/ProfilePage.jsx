@@ -17,6 +17,19 @@ const ProfilePage = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [username, setUsername] = useState(currentUser?.username || '');
   const [bio, setBio] = useState(currentUser?.bio || '');
+  const [avatar, setAvatar] = useState(currentUser?.avatar || '');
+  const [avatarInput, setAvatarInput] = useState('');
+  // For file upload
+  const handleAvatarFile = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAvatar(reader.result); // base64 string
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   
   const userMemes = memes.filter(meme => 
     currentUser && meme.creator === currentUser.username
@@ -25,7 +38,7 @@ const ProfilePage = () => {
   if (!isAuthenticated) {
     return (
       <div className="container mx-auto px-4 py-12">
-        <Card className="max-w-md mx-auto p-8 text-center">
+        <Card className="max-w-md mx-auto p-8 text-center" hoverEffect={false}>
           <User size={64} className="mx-auto text-gray-300 mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Not Logged In</h2>
           <p className="text-gray-600 mb-6">
@@ -33,7 +46,7 @@ const ProfilePage = () => {
           </p>
           <div className="flex justify-center space-x-4">
             <Button onClick={() => navigate('/login')}>Login</Button>
-            <Button variant="outline" onClick={() => navigate('/register')}>Sign Up</Button>
+            <Button variant="outline" className="" onClick={() => navigate('/register')}>Sign Up</Button>
           </div>
         </Card>
       </div>
@@ -45,7 +58,8 @@ const ProfilePage = () => {
     await updateProfile({
       ...currentUser,
       username,
-      bio
+      bio,
+      avatar: avatar || currentUser.avatar
     });
     setIsEditing(false);
   };
@@ -53,13 +67,64 @@ const ProfilePage = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-5xl mx-auto">
-        <Card className="mb-8">
+        <Card className="mb-8" hoverEffect={false}>
           <div className="p-6 md:p-8">
             <div className="flex flex-col md:flex-row items-center md:items-start">
               <div className="mb-4 md:mb-0 md:mr-8">
-                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-purple-100 flex items-center justify-center text-purple-500 uppercase text-4xl font-bold">
-                  {currentUser?.username.charAt(0)}
-                </div>
+                {isEditing ? (
+                  <>
+                    {avatar ? (
+                      <img
+                        src={avatar}
+                        alt="Profile Preview"
+                        className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border mb-2 mx-auto"
+                      />
+                    ) : (
+                      <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-purple-100 flex items-center justify-center text-purple-500 uppercase text-4xl font-bold mb-2 mx-auto">
+                        {currentUser?.username.charAt(0)}
+                      </div>
+                    )}
+                    <div className="mt-2 space-y-2">
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Profile Picture</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Profile Picture</label>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleAvatarFile}
+                        className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100"
+                      />
+                      <div className="flex items-center space-x-2">
+                        <input
+                          type="text"
+                          value={avatarInput}
+                          onChange={(e) => setAvatarInput(e.target.value)}
+                          placeholder="Paste image URL or leave blank"
+                          className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        />
+                        <Button
+                          type="button"
+                          size="sm"
+                          onClick={() => {
+                            setAvatar(avatarInput);
+                            setAvatarInput('');
+                          }}
+                        >Set</Button>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  currentUser?.avatar ? (
+                    <img
+                      src={currentUser.avatar}
+                      alt="Profile"
+                      className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border"
+                    />
+                  ) : (
+                    <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-purple-100 flex items-center justify-center text-purple-500 uppercase text-4xl font-bold">
+                      {currentUser?.username.charAt(0)}
+                    </div>
+                  )
+                )}
               </div>
               
               <div className="flex-grow text-center md:text-left">
@@ -71,9 +136,10 @@ const ProfilePage = () => {
                       onChange={(e) => setUsername(e.target.value)}
                       fullWidth
                     />
-                    
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Bio</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Bio</label>
+                        className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                       <textarea
                         value={bio}
                         onChange={(e) => setBio(e.target.value)}
@@ -81,7 +147,6 @@ const ProfilePage = () => {
                         rows={3}
                       />
                     </div>
-                    
                     <div className="flex justify-end space-x-3">
                       <Button variant="outline" onClick={() => setIsEditing(false)}>Cancel</Button>
                       <Button onClick={handleSaveProfile}>Save Changes</Button>
@@ -169,7 +234,7 @@ const ProfilePage = () => {
           {userMemes.length > 0 ? (
             <MemeGrid memes={userMemes} columns={3} />
           ) : (
-            <Card className="p-12 text-center">
+            <Card className="p-12 text-center" hoverEffect={false}>
               <Image size={48} className="mx-auto text-gray-300 mb-4" />
               <h3 className="text-xl font-semibold text-gray-900 mb-2">No memes yet</h3>
               <p className="text-gray-600 mb-6">

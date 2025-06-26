@@ -64,7 +64,7 @@ const Navbar = () => {
                   alt={currentUser?.username}
                   className="h-8 w-8 rounded-full object-cover border border-purple-500 shadow-md"
                 />
-                <span className="font-medium text-white">
+                <span className="font-medium text-black"> {/* Changed to black */}
                   {currentUser?.username}
                 </span>
               </Link>
@@ -137,7 +137,7 @@ const Navbar = () => {
                       alt={currentUser?.username}
                       className="h-8 w-8 rounded-full object-cover border border-purple-500 shadow-md"
                     />
-                    <span className="font-medium text-white">
+                    <span className="font-medium text-black"> {/* Changed to black */}
                       {currentUser?.username}
                     </span>
                   </Link>

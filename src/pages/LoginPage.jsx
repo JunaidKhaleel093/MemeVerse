@@ -9,16 +9,22 @@ import Card from '../components/ui/Card';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { login, isLoading, error } = useUserStore();
+  const { login, isLoading, error, sendLoginOTP, otpSent } = useUserStore();
   
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [otp, setOtp] = useState('');
+  const [otpRequested, setOtpRequested] = useState(false);
   
+  const handleRequestOTP = async (e) => {
+    e.preventDefault();
+    await sendLoginOTP(username);
+    setOtpRequested(true);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(username, password);
-    
-    // If no error, redirect to home
+    await login(username, password, otp);
     if (!error) {
       navigate('/');
     }
@@ -26,7 +32,7 @@ const LoginPage = () => {
   
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
-      <Card className="w-full max-w-md">
+      <Card className="w-full max-w-md" hoverEffect={false}>
         <div className="p-8">
           <div className="text-center mb-8">
             <motion.div
@@ -41,7 +47,7 @@ const LoginPage = () => {
             <p className="text-gray-600 mt-2">Sign in to continue to your account</p>
           </div>
           
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={otpRequested ? handleSubmit : handleRequestOTP}>
             {error && (
               <div className="bg-red-50 text-red-600 p-3 rounded-md mb-6">
                 {error}
@@ -58,8 +64,8 @@ const LoginPage = () => {
                 fullWidth
                 icon={<Mail size={18} />}
                 required
+                disabled={otpRequested}
               />
-              
               <Input
                 label="Password"
                 type="password"
@@ -69,7 +75,19 @@ const LoginPage = () => {
                 fullWidth
                 icon={<Lock size={18} />}
                 required
+                disabled={otpRequested}
               />
+              {otpRequested && (
+                <Input
+                  label="OTP"
+                  type="text"
+                  placeholder="Enter OTP sent to you"
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value)}
+                  fullWidth
+                  required
+                />
+              )}
               
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
@@ -79,13 +97,13 @@ const LoginPage = () => {
                     type="checkbox"
                     className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
                   />
-                  <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
+                  <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700 dark:text-gray-200">
                     Remember me
                   </label>
                 </div>
                 
                 <div className="text-sm">
-                  <Link to="/forgot-password" className="text-purple-600 hover:text-purple-500">
+                  <Link to="/forgot-password" className="text-purple-600">
                     Forgot your password?
                   </Link>
                 </div>
@@ -96,7 +114,7 @@ const LoginPage = () => {
                 fullWidth
                 isLoading={isLoading}
               >
-                Sign In
+                {otpRequested ? 'Sign In' : 'Request OTP'}
               </Button>
             </div>
           </form>
@@ -104,7 +122,7 @@ const LoginPage = () => {
           <div className="mt-8 text-center">
             <p className="text-gray-600">
               Don't have an account?{' '}
-              <Link to="/register" className="text-purple-600 hover:text-purple-500 font-medium">
+              <Link to="/register" className="text-purple-600 font-medium">
                 Sign up
               </Link>
             </p>

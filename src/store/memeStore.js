@@ -331,10 +331,20 @@ const trendingMemes = [
   }
 ];
 
+const MEMES_KEY = 'memeverse_memes';
+function getSavedMemes() {
+  const stored = localStorage.getItem(MEMES_KEY);
+  if (stored) return JSON.parse(stored);
+  return mockMemes;
+}
+function saveMemes(memes) {
+  localStorage.setItem(MEMES_KEY, JSON.stringify(memes));
+}
+
 export const useMemeStore = create((set, get) => ({
-  memes: mockMemes,
+  memes: getSavedMemes(),
   trendingMemes: trendingMemes,
-  filteredMemes: mockMemes,
+  filteredMemes: getSavedMemes(),
   currentMeme: null,
   isLoading: false,
   error: null,
@@ -345,9 +355,10 @@ export const useMemeStore = create((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       setTimeout(() => {
+        const memes = getSavedMemes();
         set({
-          memes: mockMemes,
-          filteredMemes: mockMemes,
+          memes,
+          filteredMemes: memes,
           trendingMemes: trendingMemes,
           isLoading: false
         });
@@ -357,11 +368,38 @@ export const useMemeStore = create((set, get) => ({
     }
   },
 
+  uploadMeme: async (meme) => {
+    set({ isLoading: true, error: null });
+    try {
+      setTimeout(() => {
+        const memes = getSavedMemes();
+        const newMeme = {
+          ...meme,
+          id: `${Date.now()}`,
+          createdAt: new Date().toISOString(),
+          likes: 0,
+          comments: [],
+          isLiked: false
+        };
+        const updatedMemes = [newMeme, ...memes];
+        saveMemes(updatedMemes);
+        set({
+          memes: updatedMemes,
+          filteredMemes: updatedMemes,
+          isLoading: false
+        });
+      }, 800);
+    } catch {
+      set({ error: 'Failed to upload meme', isLoading: false });
+    }
+  },
+
   likeMeme: (id) => {
     set((state) => {
       const updatedMemes = state.memes.map((meme) =>
         meme.id === id ? { ...meme, likes: meme.likes + 1, isLiked: true } : meme
       );
+      saveMemes(updatedMemes);
       return { memes: updatedMemes };
     });
   },
@@ -371,6 +409,7 @@ export const useMemeStore = create((set, get) => ({
       const updatedMemes = state.memes.map((meme) =>
         meme.id === id ? { ...meme, likes: Math.max(0, meme.likes - 1), isLiked: false } : meme
       );
+      saveMemes(updatedMemes);
       return { memes: updatedMemes };
     });
   },

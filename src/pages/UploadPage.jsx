@@ -89,7 +89,7 @@ const UploadPage = () => {
       </div>
       
       <div className="max-w-2xl mx-auto">
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="bg-white bg-gray-200 rounded-lg shadow-md p-6">
           <form onSubmit={handleSubmit}>
             <div className="mb-6">
               <Input

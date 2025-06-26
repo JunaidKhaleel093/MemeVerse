@@ -9,27 +9,31 @@ import Card from '../components/ui/Card';
 
 const RegisterPage = () => {
   const navigate = useNavigate();
-  const { register, isLoading, error } = useUserStore();
+  const { register, isLoading, error, sendRegisterOTP, otpSent } = useUserStore();
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [otp, setOtp] = useState('');
+  const [otpRequested, setOtpRequested] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleRequestOTP = async (e) => {
     e.preventDefault();
-
     // Validate passwords match
     if (password !== confirmPassword) {
       setPasswordError('Passwords do not match');
       return;
     }
-
     setPasswordError('');
-    await register(username, password, email);
+    await sendRegisterOTP(username);
+    setOtpRequested(true);
+  };
 
-    // If no error, redirect to home
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await register(username, password, email, otp);
     if (!error) {
       navigate('/');
     }
@@ -37,7 +41,7 @@ const RegisterPage = () => {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
-      <Card className="w-full max-w-md">
+      <Card className="w-full max-w-md" hoverEffect={false}>
         <div className="p-8">
           <div className="text-center mb-8">
             <motion.div
@@ -52,7 +56,7 @@ const RegisterPage = () => {
             <p className="text-gray-600 mt-2">Create an account to start sharing memes</p>
           </div>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={otpRequested ? handleSubmit : handleRequestOTP}>
             {error && (
               <div className="bg-red-50 text-red-600 p-3 rounded-md mb-6">
                 {error}
@@ -68,6 +72,8 @@ const RegisterPage = () => {
                 onChange={(e) => setUsername(e.target.value)}
                 fullWidth
                 icon={<User size={18} />}
+                required
+                disabled={otpRequested}
               />
 
               <Input
@@ -78,6 +84,8 @@ const RegisterPage = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 fullWidth
                 icon={<Mail size={18} />}
+                required
+                disabled={otpRequested}
               />
 
               <Input
@@ -88,6 +96,8 @@ const RegisterPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 fullWidth
                 icon={<Lock size={18} />}
+                required
+                disabled={otpRequested}
               />
 
               <Input
@@ -99,7 +109,20 @@ const RegisterPage = () => {
                 fullWidth
                 icon={<Lock size={18} />}
                 error={passwordError}
+                required
+                disabled={otpRequested}
               />
+              {otpRequested && (
+                <Input
+                  label="OTP"
+                  type="text"
+                  placeholder="Enter OTP sent to you"
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value)}
+                  fullWidth
+                  required
+                />
+              )}
 
               <div className="flex items-center">
                 <input
@@ -108,20 +131,20 @@ const RegisterPage = () => {
                   type="checkbox"
                   className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
                 />
-                <label htmlFor="terms" className="ml-2 block text-sm text-gray-700">
-                  I agree to the{' '}
-                  <Link to="/terms" className="text-purple-600 hover:text-purple-500">
-                    Terms of Service
-                  </Link>{' '}
-                  and{' '}
-                  <Link to="/privacy" className="text-purple-600 hover:text-purple-500">
-                    Privacy Policy
-                  </Link>
-                </label>
+              <label htmlFor="terms" className="ml-2 block text-sm text-gray-700 dark:text-gray-200">
+                I agree to the{' '}
+                <Link to="/terms" className="text-purple-600">
+                  Terms of Service
+                </Link>{' '}
+                and{' '}
+                <Link to="/privacy" className="text-purple-600">
+                  Privacy Policy
+                </Link>
+              </label>
               </div>
 
               <Button type="submit" fullWidth isLoading={isLoading}>
-                Create Account
+                {otpRequested ? 'Create Account' : 'Request OTP'}
               </Button>
             </div>
           </form>
