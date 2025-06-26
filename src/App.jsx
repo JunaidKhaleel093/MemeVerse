@@ -30,6 +30,7 @@ const App = () => {
             <Route path="/upload" element={<UploadPage />} />
             <Route path="/meme/:id" element={<MemeDetailPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/profile/:username" element={<ProfilePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="*" element={<NotFoundPage />} />

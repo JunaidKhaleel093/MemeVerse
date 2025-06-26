@@ -396,21 +396,41 @@ export const useMemeStore = create((set, get) => ({
 
   likeMeme: (id) => {
     set((state) => {
-      const updatedMemes = state.memes.map((meme) =>
-        meme.id === id ? { ...meme, likes: meme.likes + 1, isLiked: true } : meme
-      );
-      saveMemes(updatedMemes);
-      return { memes: updatedMemes };
+      // Track likes per user in localStorage
+      const userKey = 'memeverse_likes';
+      const currentUser = JSON.parse(localStorage.getItem('memeverse_auth'));
+      let liked = JSON.parse(localStorage.getItem(userKey) || '{}');
+      const userId = currentUser?.id || 'guest';
+      if (!liked[userId]) liked[userId] = [];
+      if (!liked[userId].includes(id)) {
+        liked[userId].push(id);
+        localStorage.setItem(userKey, JSON.stringify(liked));
+        const updatedMemes = state.memes.map((meme) =>
+          meme.id === id ? { ...meme, likes: meme.likes + 1, isLiked: true } : meme
+        );
+        saveMemes(updatedMemes);
+        return { memes: updatedMemes };
+      }
+      return {};
     });
   },
 
   unlikeMeme: (id) => {
     set((state) => {
-      const updatedMemes = state.memes.map((meme) =>
-        meme.id === id ? { ...meme, likes: Math.max(0, meme.likes - 1), isLiked: false } : meme
-      );
-      saveMemes(updatedMemes);
-      return { memes: updatedMemes };
+      const userKey = 'memeverse_likes';
+      const currentUser = JSON.parse(localStorage.getItem('memeverse_auth'));
+      let liked = JSON.parse(localStorage.getItem(userKey) || '{}');
+      const userId = currentUser?.id || 'guest';
+      if (liked[userId] && liked[userId].includes(id)) {
+        liked[userId] = liked[userId].filter((memeId) => memeId !== id);
+        localStorage.setItem(userKey, JSON.stringify(liked));
+        const updatedMemes = state.memes.map((meme) =>
+          meme.id === id ? { ...meme, likes: Math.max(0, meme.likes - 1), isLiked: false } : meme
+        );
+        saveMemes(updatedMemes);
+        return { memes: updatedMemes };
+      }
+      return {};
     });
   },
 
